@@ -1,0 +1,113 @@
+/* General Page Styling */
+body {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Clock Styling */
+.clock-container {
+    background: linear-gradient(45deg, #3498db, #8e44ad);
+    color: white;
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 8px;
+    width: 250px;
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5); }
+    to { box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8); }
+}
+
+/* Main Layout */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* To-Do List Styling */
+.todo-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    text-align: left;
+}
+
+.todo-container input, select {
+    width: 70%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.todo-container button {
+    padding: 8px 15px;
+    border: none;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.todo-container button:hover {
+    background: #2c3e50;
+}
+
+/* Task List */
+#taskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#taskList li {
+    padding: 10px;
+    margin: 5px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#taskList li:hover {
+    background: #d5dbdb;
+}
+
+/* Calendar Styling */
+.calendar-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    text-align: center;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+
+.calendar-day {
+    padding: 10px;
+    border-radius: 5px;
+    background: #bdc3c7;
+    transition: 0.3s;
+}
+
+.calendar-day:hover {
+    background: #2c3e50;
+    color: white;
+}

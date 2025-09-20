@@ -1,0 +1,177 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" type="text/css" href="styleexp.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f3e7e9, #e3eeff);
+            text-align: center;
+        }
+        header {
+            background: #7c70e7;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-left {
+            font-size: 30px;
+            font-family: cursive;
+            margin-left: 20px;
+        }
+        .header-right {
+            font-size: 18px;
+            margin-right: 20px;
+        }
+        .container, nav {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        nav a {
+            padding: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.3s;
+            color: white;
+            font-weight: bold;
+        }  
+        nav a:nth-child(1) { background: #3f99c0; }  
+        nav a:nth-child(2) { background: #3f99c0; }  
+        nav a:nth-child(3) { background: #3f99c0; }   
+        nav a:nth-child(4) { background: #3f99c0; } 
+        nav a:nth-child(5) { background: #3f99c0; }  
+        nav a:nth-child(6) { background: #3f99c0; }  
+        nav a:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+        form input, form select, form button {
+            margin: 10px;
+            padding: 10px;
+            width: 90%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #64d7ee;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        .edit-btn {
+            background: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 20px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">Spend Sensei</div>
+        <div class="header-right">Track, Manage, and Optimize Your Daily Expenses</div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="calender.html">Time Management</a>
+       
+        <a href="family.html">Family Details</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        <form id="expense-form">
+            <input type="text" id="expense-name" placeholder="Expense Name" required />
+            <input type="number" id="expense-amount" placeholder="Amount" required />
+            <select id="expense-category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Grocery">Grocery</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="date" id="expense-date" required />
+            <button type="submit">Add Expense</button>
+        </form>
+        
+        <div class="expense-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Expense Name</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="expense-list"></tbody>
+            </table><br><br>
+            <div class="total-amount">
+                <strong>Total Spending:</strong> ₹<span id="total-amount">0</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scriptexp.js"></script>
+    
+    <footer>
+        <p>Spend Sensei &copy; 2024 | Smart Financial Management for a Better Future</p>
+    </footer>
+</body>
+
+</html>

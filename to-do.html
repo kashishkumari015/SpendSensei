@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #A1C4FD, #C2E9FB);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #F8F9FA;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        input {
+            width: 70%;
+            padding: 10px;
+            margin-right: 5px;
+            border: 2px solid #4682B4;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background: #4682B4;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #5F9EA0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: #DCEEF2;
+            color: #333;
+            border-radius: 5px;
+            position: relative;
+            transition: background 0.3s;
+        }
+        li:hover {
+            background: #B0D4E3;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            right: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            padding: 5px 0;
+            z-index: 10;
+        }
+        .menu li {
+            background: none;
+            color: #333;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .menu li:hover {
+            background: #ddd;
+        }
+        .dots {
+            cursor: pointer;
+            padding: 5px;
+            font-size: 18px;
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            let input = document.getElementById("taskInput");
+            let task = input.value.trim();
+            if (task === "") return;
+
+            let li = document.createElement("li");
+            li.innerHTML = `
+                <span class="task-text">${task}</span>
+                <span class="dots" onclick="toggleMenu(this)">⋮</span>
+                <ul class="menu">
+                    <li onclick="editTask(this)">Edit</li>
+                    <li onclick="removeTask(this)">Delete</li>
+                    <li onclick="markImportant(this)">Mark Important</li>
+                </ul>
+            `;
+            document.getElementById("taskList").appendChild(li);
+            input.value = "";
+        }
+        
+        function removeTask(element) {
+            let li = element.closest("li");
+            li.style.animation = "fadeOut 0.5s forwards";
+            setTimeout(() => li.remove(), 500);
+        }
+        
+        function editTask(element) {
+            let li = element.closest("li");
+            let taskText = li.querySelector(".task-text");
+            let newTask = prompt("Edit Task:", taskText.textContent);
+            if (newTask) taskText.textContent = newTask;
+        }
+        
+        function markImportant(element) {
+            let li = element.closest("li");
+            li.style.background = "#FFD700";
+            li.style.color = "#333";
+        }
+        
+        function toggleMenu(element) {
+            let li = element.closest("li");
+            let menu = li.querySelector(".menu");
+            let allMenus = document.querySelectorAll(".menu");
+            allMenus.forEach(m => {
+                if (m !== menu) m.style.display = "none";
+            });
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+        
+        document.addEventListener("click", function(event) {
+            let menus = document.querySelectorAll(".menu");
+            let dots = document.querySelectorAll(".dots");
+            if (![...menus, ...dots].some(el => el.contains(event.target))) {
+                menus.forEach(menu => menu.style.display = "none");
+            }
+        });
+    </script>
+</body>
+</html>

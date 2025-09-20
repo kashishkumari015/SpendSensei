@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Setter & Savings Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #aad6f3, #f5c2d4);
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .progress-container {
+            margin-top: 20px;
+        }
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Goal Setter & Savings Tracker</h2>
+        <label>Goal Type:</label>
+        <select id="goalType" >
+            <option value="electronic">Electronic</option>
+            <option value="vehicles">vehicles</option>
+            <option value="travels">travels</option>
+            <option value="Jwellery">Jwellery</option>
+            <option value="others">Others</option>
+        </select>
+        
+        <label>Your Savings (₹):</label>
+        <input type="number" id="savings" placeholder="Enter your savings" />
+        
+        <label>Target Item Cost (₹):</label>
+        <input type="number" id="goalAmount" placeholder="Enter target cost" />
+        
+        <label>Savings Plan:</label>
+        <input type="number" id="savingRate" placeholder="How much you save?" />
+        <select id="savingPeriod">
+            <option value="day">Per Day</option>
+            <option value="month">Per Month</option>
+            <option value="year">Per Year</option>
+        </select>
+        
+        <button onclick="calculateGoal()">Calculate</button>
+        
+        <h3 id="result"></h3>
+        <div class="progress-container">
+            <canvas id="savingsChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        function calculateGoal() {
+            let savings = parseFloat(document.getElementById("savings").value) || 0;
+            let goalAmount = parseFloat(document.getElementById("goalAmount").value) || 0;
+            let savingRate = parseFloat(document.getElementById("savingRate").value) || 0;
+            let savingPeriod = document.getElementById("savingPeriod").value;
+            
+            let timeNeeded = 0;
+            if (savingRate > 0) {
+                let multiplier = savingPeriod === "day" ? 1 : savingPeriod === "month" ? 30.4375 : 365.25;
+                timeNeeded = (goalAmount - savings) / (savingRate * multiplier);
+                timeNeeded = Math.ceil(timeNeeded);
+            }
+            
+            let resultText = timeNeeded > 0 ? `You need approximately ${timeNeeded} ${savingPeriod}(s) to reach your goal.` : "You have enough savings!";
+            document.getElementById("result").innerText = resultText;
+            updateChart(savings, goalAmount);
+        }
+        
+        function updateChart(savings, goalAmount) {
+            let ctx = document.getElementById("savingsChart").getContext("2d");
+            if (window.savingsChart && typeof window.savingsChart.destroy === "function") {
+                window.savingsChart.destroy();
+            }
+            window.savingsChart = new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: ["Saved", "Remaining"],
+                    datasets: [{
+                        data: [savings, Math.max(goalAmount - savings, 0)],
+                        backgroundColor: ["#4CAF50", "#FF5733"],
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

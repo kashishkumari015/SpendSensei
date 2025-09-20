@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendSensei</title>
+    <style>
+        
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color:grey;
+            color: rgb(250, 250, 250);
+            margin: 0;
+            padding: 0;
+        }
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background: #ffffff;
+        }
+        .navbar a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .search-box {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+        }
+        .search-btn {
+            padding: 8px 15px;
+            background: rgb(255, 254, 254);
+            border: none;
+            cursor: pointer;
+        }
+        /* Main Content */
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        .container h1 {
+            font-size: 36px;
+        }
+        .highlight {
+            color: rgb(198, 15, 143);
+        }
+        .join-btn {
+            padding: 10px 20px;
+            background: rgb(166, 25, 138);
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        /* Login / Signup Box */
+        .auth-box {
+            width: 300px;
+            background: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: auto;
+            box-shadow: 0 0 90px rgba(110, 32, 236, 0.5);
+            align-items: center;
+            margin-top: 50px;
+        }
+        .auth-box h2 {
+            color: rgb(255, 255, 255);
+        }
+        .auth-box input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .auth-btn {
+            width: 100%;
+            padding: 10px;
+            background: rgb(141, 216, 226);
+            color: rgb(0, 0, 0);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .auth-btn:hover {
+            background: rgb(126, 214, 234);
+        }
+        .switch-link {
+            color: rgb(153, 227, 252);
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .social-login {
+            margin-top: 10px;
+        }
+        .social-login img {
+            width: 30px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+  
+    <!-- Login / Signup Box -->
+    <div class="auth-box">
+        <h2>Sign Up</h2>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Confirm Password" required>
+            <button type="submit" class="auth-btn">Sign Up</button>
+        </form>
+        <a href="login.html" class="switch-link">Already have an account? Log in</a>
+       
+    </div>
+
+</body>
+</html>

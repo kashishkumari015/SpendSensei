@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Distribution</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function toggleInput(checkbox, inputId) {
+            document.getElementById(inputId).disabled = !checkbox.checked;
+            calculateTotal();
+        }
+        
+        function calculateTotal() {
+            let total = 0;
+            document.querySelectorAll('.form-control').forEach(input => {
+                if (!input.disabled && input.value) {
+                    total += parseFloat(input.value) || 0;
+                }
+            });
+            document.getElementById('totalAmount').innerText = `Total: ₹${total.toFixed(2)}`;
+        }
+    </script>
+    <style>
+        body {
+            background-color: #a5cffa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            flex: 1;
+        }
+        .form-group input[type="checkbox"] {
+            margin-left: 10px;
+        }
+        .form-group input[type="number"] {
+            margin-left: 30px;
+            flex: 2;
+        }
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Expense Distribution</h2>
+        <form action="submit_expense.php" method="post">
+            <div class="form-group">
+                <label>Total Amount Paid on Education:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'education')">
+                <input type="number" class="form-control" id="education" name="education" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>Health:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'health')">
+                <input type="number" class="form-control" id="health" name="health" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>Fitness:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'fitness')">
+                <input type="number" class="form-control" id="fitness" name="fitness" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>Grocery:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'grocery')">
+                <input type="number" class="form-control" id="grocery" name="grocery" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>Internet:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'internet')">
+                <input type="number" class="form-control" id="internet" name="internet" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>LPG:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'lpg')">
+                <input type="number" class="form-control" id="lpg" name="lpg" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>Electricity:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'electricity')">
+                <input type="number" class="form-control" id="electricity" name="electricity" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>Rent/EMI:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'rent')">
+                <input type="number" class="form-control" id="rent" name="rent" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            <div class="form-group">
+                <label>Social Media Subscription:</label>
+                <input type="checkbox" onchange="toggleInput(this, 'social_media')">
+                <input type="number" class="form-control" id="social_media" name="social_media" placeholder="Enter amount" disabled oninput="calculateTotal()">
+            </div>
+            
+        </form>
+    </div>
+    <div class="sticky-footer">
+        <span id="totalAmount">Total: $0.00</span>
+    </div>
+</body>
+</html>

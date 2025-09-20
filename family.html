@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Family Details</title>
+    <link rel="stylesheet" href="family.css">
+</head>
+<body>
+    <h2>My Family Details</h2>
+
+    <div class="family-form">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="relation" placeholder="Relation (Father, Mother, Brother...)" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <input type="text" id="contact" placeholder="Contact Number">
+        <button onclick="addFamilyMember()">Add Member</button>
+    </div>
+
+    <h3>Family Members</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Relation</th>
+                <th>Age</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="family-list">
+        </tbody>
+    </table>
+
+    <h3>Family Tree</h3>
+    <div id="family-tree"></div>
+
+    <script src="family.js"></script>
+</body>
+</html>
